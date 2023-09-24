@@ -15,3 +15,11 @@ pip install -r requirements.txt
 ```
 cp params.env .env
 ```
+
+### Dockerizing this app
+-   Build image out of this docker file
+
+-   To run the project locally on docker to test
+    ```
+    docker run -it -e DEBUG=True -e SECRET_KEY=<secret_key> -p 8000:8000 <image_name>:<image_tag>
+    ```
