@@ -26,3 +26,4 @@ COPY --from=builder /usr/local/bin/ /usr/local/bin/
 COPY . /app
 ENV PYTHONUNBUFFERED 1
 
+CMD [ "python","/app/manage.py","runserver","0.0.0.0:8000" ]
