@@ -19,7 +19,7 @@ cp params.env .env
 ### Dockerizing this app
 -   Build image out of this docker file
 
--   To run the project locally on docker to test
+-   To run the project locally on docker to test and run on gunicorn 
     ```
-    docker run -it -e DEBUG=True -e SECRET_KEY=<secret_key> -p 8000:8000 <image_name>:<image_tag>
+    docker run -it --rm -e DEBUG=True -e SECRET_KEY=<secret_key> -e LOGLEVEL=INFO -p 8000:8000 <image_name>:<image_tag>
     ```
