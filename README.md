@@ -21,5 +21,5 @@ cp params.env .env
 
 -   To run the project locally on docker to test
     ```
-    docker run -it -e DEBUG=True -e SECRET_KEY=<secret_key> -p 8000:8000 django-devapi:0.1 python3 /app/manage.py runserver 0.0.0.0:8000
+    docker run -it -e DEBUG=True -e SECRET_KEY=<secret_key> -p 8000:8000 <image_name>:<image_tag>
     ```
