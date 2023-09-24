@@ -1,3 +1,4 @@
+import logging.config
 import os
 from pathlib import Path
 
@@ -84,6 +85,38 @@ else:
         }
     }
 
+# Logging Configuration
+
+# Clear Previous Config
+LOGGING_CONFIG = None
+
+# Get loglevel from env
+LOGLEVEL = env("LOGLEVEL")
+
+
+logging.config.dictConfig(
+    {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "console": {
+                "format": "%(asctime)s %(levelname)s [%(name)s:%(lineno)s] %(module)s %(process)d %(thread)d %(message)s",
+            }
+        },
+        "handlers": {
+            "console": {"class": "logging.StreamHandler", "formatter": "console"}
+        },
+        "loggers": {
+            "": {
+                "level": LOGLEVEL,
+                "handlers": [
+                    "console",
+                ],
+            }
+        },
+    }
+)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -106,6 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
+
 
 LANGUAGE_CODE = "en-us"
 
