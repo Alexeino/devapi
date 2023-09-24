@@ -24,6 +24,14 @@ COPY --from=builder /usr/local/lib/python3.10/site-packages/ /usr/local/lib/pyth
 COPY --from=builder /usr/local/bin/ /usr/local/bin/
 
 COPY . /app
+
+RUN chmod +x /app/gunicorn_config.py
 ENV PYTHONUNBUFFERED 1
 
-CMD [ "python","/app/manage.py","runserver","0.0.0.0:8000" ]
+WORKDIR /app
+# For local
+# CMD [ "python","/app/manage.py","runserver","0.0.0.0:8000" ]
+
+# For Prod to use Gunicorn
+CMD [ "gunicorn","--config","/app/gunicorn_config.py","devapi.wsgi:application" ] 
+# CMD [ "gunicorn","devapi.wsgi:application","-b","0.0.0.0:8000" ]
